@@ -2,12 +2,12 @@
 version: 1.2.5
 title: erlang_medias_and_or
 ---
-.css--1807035173 {
+.css-944AD4DB {
   background: blue;
 }
 
 @media (max-width: 700.0px) and (min-width: 700.0px) or (min-width: 600.0px) {
-  .css--1807035173 {
+  .css-944AD4DB {
     background: red;
     background: blue;
   }

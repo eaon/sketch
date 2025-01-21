@@ -1,6 +1,5 @@
 import gleam/bool
 import gleam/dict.{type Dict}
-import gleam/int
 import gleam/list
 import gleam/option.{type Option, None, Some}
 import gleam/pair
@@ -18,7 +17,7 @@ type Definitions {
 
 type ComputedClass {
   ComputedClass(
-    id: Int,
+    id: String,
     name: String,
     class_name: String,
     definitions: Definitions,
@@ -125,7 +124,7 @@ fn computed_class(class: Class, cache: Cache) -> #(Cache, ComputedClass) {
 
 fn empty_computed() {
   let definitions = Definitions([], [], "")
-  ComputedClass(id: 0, name: "", class_name: "", definitions:)
+  ComputedClass(id: "00000000", name: "", class_name: "", definitions:)
 }
 
 pub fn at_rule(rule: AtRule, cache: Cache) -> Cache {
@@ -191,13 +190,12 @@ fn compute_properties(
 // Compute classes by using the class definitions, and by wrapping them in the
 // correct class declarations, to be CSS compliant.
 fn compute_classes(
-  id: Int,
+  id: String,
   name: Option(String),
   properties: Properties,
 ) -> ComputedClass {
-  let class_name =
-    option.lazy_unwrap(name, fn() { "css-" <> int.to_string(id) })
-  let name = option.lazy_unwrap(name, fn() { ".css-" <> int.to_string(id) })
+  let class_name = option.lazy_unwrap(name, fn() { "css-" <> id })
+  let name = option.lazy_unwrap(name, fn() { ".css-" <> id })
   let Properties(properties:, medias:, selectors:, ..) = properties
   let class = sketch_string.wrap_class(name, properties, 0, None)
   let selectors = wrap_selectors(name, 0, selectors)
@@ -226,9 +224,9 @@ fn insert_class_in_cache(cache: Cache, class: Class) -> #(Cache, ComputedClass) 
   |> pair.new(class_)
 }
 
-fn compute_hash(content: String) -> Int {
+fn compute_hash(content: String) -> String {
   murmur3a.hash_string(content, 0)
-  |> murmur3a.int_digest
+  |> murmur3a.hex_digest
 }
 
 fn wrap_selectors(

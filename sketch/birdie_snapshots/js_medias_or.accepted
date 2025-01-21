@@ -2,12 +2,12 @@
 version: 1.2.5
 title: js_medias_or
 ---
-.css--1052452325 {
+.css-C144DA1B {
   background: blue;
 }
 
 @media (max-width: 700.0px) or (min-width: 600.0px) {
-  .css--1052452325 {
+  .css-C144DA1B {
     background: red;
     background: blue;
   }

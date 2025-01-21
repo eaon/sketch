@@ -2,12 +2,12 @@
 version: 1.2.5
 title: js_medias_and
 ---
-.css--362700934 {
+.css-EA619F7A {
   background: blue;
 }
 
 @media (max-width: 700.0px) and (min-width: 600.0px) {
-  .css--362700934 {
+  .css-EA619F7A {
     background: red;
     background: blue;
   }

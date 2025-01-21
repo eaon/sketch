@@ -2,35 +2,35 @@
 version: 1.2.5
 title: js_nestings_example
 ---
-.css-953569549 {
+.css-38D6510D {
 }
 
-.css-953569549 > .css--1511325916 {
+.css-38D6510D > .css-A5EAFF24 {
     background: red;
 }
 
-.css-953569549 > .css--1511325916:hover {
+.css-38D6510D > .css-A5EAFF24:hover {
       background: blue;
 }
 
 @media (max-width: 700.0px) or (min-width: 400.0px) {
-  .css-953569549 {
+  .css-38D6510D {
     background: blue;
   }
-  .css-953569549:hover {
+  .css-38D6510D:hover {
       background: red;
   }
-  .css-953569549:hover {
+  .css-38D6510D:hover {
   }
-  .css-953569549:hover > .css--1511325916 {
+  .css-38D6510D:hover > .css-A5EAFF24 {
         background: blue;
   }
-  .css-953569549:hover > .css--1511325916:hover {
+  .css-38D6510D:hover > .css-A5EAFF24:hover {
           background: red;
   }
 }
 
-.css--1511325916 {
+.css-A5EAFF24 {
   color: blue;
   background: green;
   padding: 12.0px;
