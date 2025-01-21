@@ -5,6 +5,7 @@ import gleam/list
 import gleam/option.{type Option, None, Some}
 import gleam/pair
 import gleam/string
+import murmur3a
 import sketch/internals/string as sketch_string
 
 pub type Class {
@@ -225,9 +226,10 @@ fn insert_class_in_cache(cache: Cache, class: Class) -> #(Cache, ComputedClass) 
   |> pair.new(class_)
 }
 
-@external(erlang, "erlang", "phash2")
-@external(javascript, "../../../xxhash.ffi.mjs", "xxHash32")
-fn compute_hash(content: String) -> Int
+fn compute_hash(content: String) -> Int {
+  murmur3a.hash_string(content, 0)
+  |> murmur3a.int_digest
+}
 
 fn wrap_selectors(
   id: String,
