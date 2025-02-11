@@ -4,8 +4,8 @@ import lustre
 import lustre/attribute as a
 import lustre/event as e
 import sketch
-import sketch/lustre as sketch_lustre
-import sketch/lustre/element/html as h
+import sketch/lustre/experimental as sketch_lustre
+import sketch/lustre/experimental/element/html as h
 import styles
 
 pub type Model =
@@ -19,8 +19,9 @@ pub type Msg {
 /// Defines the standard app, used everywhere in Lustre applications.
 pub fn app(strategy: sketch.Strategy) {
   let assert Ok(stylesheet) = sketch.stylesheet(strategy:)
+  let assert Ok(_) = sketch_lustre.setup(stylesheet)
   use model <- lustre.simple(init, update)
-  use <- sketch_lustre.render(stylesheet, [sketch_lustre.node()])
+  use <- sketch_lustre.render([sketch_lustre.node()])
   view(model)
 }
 
@@ -28,8 +29,8 @@ pub fn app(strategy: sketch.Strategy) {
 /// before hydrating it. It can also be an example of HTML server-side
 /// generation, Sketch improved.
 pub fn ssr(model: Model) {
-  let assert Ok(stylesheet) = sketch.stylesheet(strategy: sketch.Ephemeral)
-  use <- sketch_lustre.render(stylesheet, [sketch_lustre.node()])
+  let assert Ok(_stylesheet) = sketch.stylesheet(strategy: sketch.Ephemeral)
+  use <- sketch_lustre.render([sketch_lustre.node()])
   h.html([], [
     h.head([], [
       h.link([a.rel("stylesheet"), a.href(styles.fonts)]),

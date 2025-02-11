@@ -5,8 +5,8 @@
 //// your knowledge of Lustre, and behaves exactly as expected.
 
 import shared_styles as styles
-import sketch/lustre/element
-import sketch/lustre/element/html
+import sketch/lustre/experimental/element
+import sketch/lustre/experimental/element/html
 
 pub fn body(attrs, children) {
   // demonstrate ability to merge fragment at root
